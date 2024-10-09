@@ -1,0 +1,93 @@
+#腳本使用方法
+sudo chmod +x StirlingPDF_Install.sh
+sudo ./StirlingPDF_Install.sh
+
+
+
+
+
+
+
+# 安裝 docker
+sudo apt install docker.io
+sudo systemctl start docker
+sudo systemctl enable docker
+
+
+sudo docker run -d \
+  -p 80:8080 \
+  -v ./trainingData:/usr/share/tessdata \
+  -v ./extraConfigs:/configs \
+  -v ./logs:/logs \
+  -v ./customFiles:/customFiles \
+  -v ./customHTMLFiles:/customHTMLFiles \
+  -e DOCKER_ENABLE_SECURITY=false \
+  -e INSTALL_BOOK_AND_ADVANCED_HTML_OPS=false \
+  -e LANGS=zh_TW \
+  -e UI_APPNAME="PDF Tools" \
+  -e UI_APPNAMENAVBAR="PDF Tools" \
+  -e UI_DESCRIPTION="PDF 工具" \
+  --name PDF-Tools \
+  frooodle/s-pdf:latest
+  
+
+
+
+
+
+
+
+# 查詢運行 Docker
+sudo docker ps -a
+# 進入 Docker 命令行
+sudo docker exec -it PDF-Tools /bin/bash
+# 關閉 Docker
+sudo docker stop PDF-Tools
+# 重啟 Docker
+sudo docker restart PDF-Tools
+# 刪除 Docker
+sudo docker rm PDF-Tools
+
+# 進入之後找到設定模板
+vi /configs/settings.yml
+
+
+
+
+# 建立樣板資料夾
+sudo mkdir /customFiles/templates/fragments
+sudo chmod -R 777 customFiles/templates/fragments
+# 把 footer.html 放到 fragments 底下即可
+
+# 頁尾設定參考處 https://github.com/Stirling-Tools/Stirling-PDF/blob/main/src/main/resources/templates/fragments/footer.html
+
+
+
+# 更換圖示
+放置於 /customFiles/static/favicon.svg
+
+
+
+
+
+# OCP 增加中文
+cd trainingData
+sudo chmod -R 777 trainingData/
+wget https://github.com/tesseract-ocr/tessdata/blob/4.1.0/chi_sim.traineddata
+wget https://github.com/tesseract-ocr/tessdata/blob/4.1.0/chi_tra.traineddata
+# 將檔案放置到 trainingData
+
+
+
+
+
+
+
+
+
+
+
+
+# 以下均未使用 可能沒用
+
+sudo usermod -aG docker $USER
