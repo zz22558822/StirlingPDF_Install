@@ -79,7 +79,8 @@ wget https://github.com/tesseract-ocr/tessdata/blob/4.1.0/chi_tra.traineddata
 
 
 
-
+# Docker 自動啟動容器
+sudo docker update --restart always PDF-Tools
 
 
 

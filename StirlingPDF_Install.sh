@@ -52,4 +52,8 @@ sudo sed -i "s/defaultLocale: en-US/defaultLocale: zh-TW/" $(pwd)/extraConfigs/s
 echo "正在重新啟動 Docker 容器..."
 sudo docker restart PDF-Tools
 
+# 9. 設置 Docker 容器開機自動啟動
+echo "正在設置 Docker 容器開機自動啟動..."
+sudo docker update --restart unless-stopped PDF-Tools
+
 echo "設置完成。"
