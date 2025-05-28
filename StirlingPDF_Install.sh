@@ -41,12 +41,8 @@ wget https://github.com/tesseract-ocr/tessdata/raw/4.1.0/chi_tra.traineddata -P 
 cp footer.html customFiles/templates/fragments/
 
 # 6.複製 favicon.svg 到 /customFiles/static (改放到img資料夾統一複製)
-# cp favicon.svg customFiles/static/
-# cp favicon.ico customFiles/static/
-# cp favicon-32x32.png customFiles/static/
-# cp favicon-16x16.png customFiles/static/
-# cp favicon.png customFiles/static/
-# cp apple-touch-icon.png customFiles/static/
+sudo mkdir -p customFiles/static
+sudo chmod -R 777 customHTMLFiles
 cp img/* customFiles/static/
 
 # 7. 編輯 yml 文件
